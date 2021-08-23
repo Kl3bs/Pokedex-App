@@ -52,12 +52,8 @@ class PokemonItem extends StatelessWidget {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset("img/Grass.png"),
-                  SizedBox(
-                    width: 20,
-                  ),
                   Image.asset("img/Poison.png"),
                 ],
               )
