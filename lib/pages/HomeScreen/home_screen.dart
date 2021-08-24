@@ -10,12 +10,21 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             TopBar(),
             ColoredDivider(),
-            PokemonItem(),
-            PokemonItem(),
-            PokemonItem()
+            Expanded(
+                child: Container(
+              child: ListView(
+                padding: const EdgeInsets.all(8),
+                children: <Widget>[
+                  Container(
+                    child: const Center(child: PokemonItem()),
+                  ),
+                ],
+              ),
+            ))
           ],
         ),
       ),
