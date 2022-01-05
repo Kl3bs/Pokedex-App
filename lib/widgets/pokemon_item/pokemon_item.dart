@@ -22,11 +22,16 @@ class PokemonItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset("img/pokemon.png"),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.red,
+                    ),
                     SizedBox(
                       width: 20,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
@@ -54,8 +59,19 @@ class PokemonItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset("img/Grass.png"),
-                    Image.asset("img/Poison.png"),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      color: Colors.green,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      color: Colors.purple,
+                    ),
                   ],
                 )
               ],

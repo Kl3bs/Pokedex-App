@@ -23,7 +23,7 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Pokedex App",
+            "Pokedex App 2",
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w600,
