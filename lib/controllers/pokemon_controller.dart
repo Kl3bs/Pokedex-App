@@ -1,14 +1,33 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:pokedex_app/models/pokemonInfo.dart';
 
 class PokemonController {
   var dio = new Dio();
+  String baseUrl = 'https://pokeapi.co/api/v2/pokemon?limit=10';
 
-  Future getPokemons() async {
+  //NOVA API:   https://pokeapi.glitch.me/v1/pokemon/greninja
+
+  Future<List<PokemonInfo>> getPokemons() async {
     try {
-      var response = await dio.get('https://pokeapi.co/api/v2/pokemon?limit=6');
-      print(response);
+      var response = await dio.get(baseUrl);
+      var json = jsonDecode(response.toString());
+      return getPokemonList(json["results"]);
     } catch (e) {
-      print(e);
+      throw Exception("Houve algum erro");
     }
+  }
+
+  List<PokemonInfo> getPokemonList(json) {
+    List<PokemonInfo> list = [];
+
+    for (var i = 0; i < json.length; i++) {
+      PokemonInfo item = PokemonInfo(name: json[i]["name"], id: i + 1);
+      list.add(item);
+    }
+
+    return list;
   }
 }

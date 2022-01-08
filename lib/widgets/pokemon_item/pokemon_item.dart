@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class PokemonItem extends StatelessWidget {
-  const PokemonItem({Key? key}) : super(key: key);
+  final String name;
+  final int id;
+
+  const PokemonItem({Key? key, required this.name, required this.id})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,8 @@ class PokemonItem extends StatelessWidget {
                     Container(
                       width: 50,
                       height: 50,
-                      color: Colors.red,
+                      child: Image.network(
+                          'https://cdn.traction.one/pokedex/pokemon/$id.png'),
                     ),
                     SizedBox(
                       width: 20,
@@ -35,7 +40,7 @@ class PokemonItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Bulbasaur",
+                          name,
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w600,
@@ -46,7 +51,7 @@ class PokemonItem extends StatelessWidget {
                           height: 4,
                         ),
                         Text(
-                          "#001",
+                          "#00$id",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: HexColor("#979797"),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/controllers/pokemon_controller.dart';
+import 'package:pokedex_app/models/pokemonInfo.dart';
 import 'package:pokedex_app/pages/HomeScreen/widgets/bottom_nav.dart';
 import 'package:pokedex_app/pages/HomeScreen/widgets/colored_divider.dart';
 import 'package:pokedex_app/pages/HomeScreen/widgets/top_bar.dart';
 import 'package:pokedex_app/widgets/pokemon_item/pokemon_item.dart';
+import 'package:basic_utils/basic_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,9 +14,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  void initState() {
+  List<PokemonInfo> pokemonList = [];
+  var response;
+
+  initState() {
     super.initState();
-    PokemonController().getPokemons();
+    getPokemonList();
+  }
+
+  Future<void> getPokemonList() async {
+    pokemonList = await PokemonController().getPokemons();
+
+    print(pokemonList);
   }
 
   Widget build(BuildContext context) {
@@ -27,15 +38,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ColoredDivider(),
             Expanded(
                 child: Container(
-              child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  Container(
-                    child: const Center(child: PokemonItem()),
-                  ),
-                ],
-              ),
-            ))
+                    child: ListView.builder(
+              itemCount: pokemonList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Center(
+                      child: InkWell(
+                    onTap: () {},
+                    child: PokemonItem(
+                      name: StringUtils.capitalize(pokemonList[index].name),
+                      id: pokemonList[index].id,
+                    ),
+                  )),
+                );
+              },
+            )))
           ],
         ),
       ),
