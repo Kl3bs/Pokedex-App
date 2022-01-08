@@ -6,6 +6,7 @@ import 'package:pokedex_app/pages/HomeScreen/widgets/colored_divider.dart';
 import 'package:pokedex_app/pages/HomeScreen/widgets/top_bar.dart';
 import 'package:pokedex_app/widgets/pokemon_item/pokemon_item.dart';
 import 'package:basic_utils/basic_utils.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   List<PokemonInfo> pokemonList = [];
-  var response;
+  List<dynamic> pokeInfo = [];
 
   initState() {
     super.initState();
@@ -23,9 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> getPokemonList() async {
-    pokemonList = await PokemonController().getPokemons();
+    var temp = await PokemonController().getPokemons();
 
-    print(pokemonList);
+    setState(() {
+      pokemonList = temp;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -38,19 +41,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ColoredDivider(),
             Expanded(
                 child: Container(
-                    child: ListView.builder(
-              itemCount: pokemonList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  child: Center(
-                      child: InkWell(
-                    onTap: () {},
-                    child: PokemonItem(
-                      name: StringUtils.capitalize(pokemonList[index].name),
-                      id: pokemonList[index].id,
-                    ),
-                  )),
-                );
+                    child: FutureBuilder(
+              future: PokemonController().getPokemons(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return ListView.builder(
+                    itemCount: pokemonList.length,
+                    itemBuilder: (context, index) {
+                      var a = PokemonController().getPokemonById(index + 1);
+                      print(a);
+                      return Container(
+                        child: Center(
+                            child: InkWell(
+                          onTap: () async {},
+                          child: PokemonItem(
+                            name:
+                                StringUtils.capitalize(pokemonList[index].name),
+                            id: pokemonList[index].id,
+                          ),
+                        )),
+                      );
+                    },
+                  );
+                } else {
+                  return SpinKitFadingCircle(
+                    color: Colors.green,
+                    size: 150.0,
+                  );
+                }
               },
             )))
           ],

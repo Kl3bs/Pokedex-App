@@ -32,6 +32,7 @@ dependencies:
   flutter_svg: ^0.22.0
   dio: ^4.0.4
   basic_utils: ^3.9.4
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:
