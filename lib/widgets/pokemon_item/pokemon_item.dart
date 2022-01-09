@@ -4,8 +4,10 @@ import 'package:hexcolor/hexcolor.dart';
 class PokemonItem extends StatelessWidget {
   final String name;
   final int id;
+  final dynamic types;
 
-  const PokemonItem({Key? key, required this.name, required this.id})
+  const PokemonItem(
+      {Key? key, required this.name, required this.id, required this.types})
       : super(key: key);
 
   @override
@@ -67,16 +69,22 @@ class PokemonItem extends StatelessWidget {
                     Container(
                       width: 40,
                       height: 40,
-                      color: Colors.green,
+                      child: Image.asset('assets/img/Types/${types[0]}.png'),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      color: Colors.purple,
-                    ),
+                    // types[1] != null
+                    //     ? Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         child:
+                    //             Image.asset('assets/img/Types/${types[1]}.png'),
+                    //       )
+                    //     : Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //       )
                   ],
                 )
               ],

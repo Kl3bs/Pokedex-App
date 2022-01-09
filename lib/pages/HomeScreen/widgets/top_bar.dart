@@ -22,6 +22,7 @@ class TopBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Image.asset('assets/img/Types/Grass.png'),
           Text(
             "Pokedex App 2",
             style: TextStyle(

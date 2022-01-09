@@ -23,9 +23,7 @@ class PokemonController {
     try {
       var response = await dio.get('https://pokeapi.glitch.me/v1/pokemon/$id');
 
-      return response.data[0];
-
-      // print(jsonEncode(response.toString()));
+      return jsonEncode(response.data[0]);
     } catch (e) {
       print(e);
     }
