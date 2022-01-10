@@ -9,7 +9,7 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 180,
+      height: 150,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
@@ -22,9 +22,8 @@ class TopBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/img/Types/Grass.png'),
           Text(
-            "Pokedex App 2",
+            "Flutter Pokedex",
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w600,
@@ -32,7 +31,7 @@ class TopBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30),

@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -67,24 +68,18 @@ class PokemonItem extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       child: Image.asset('assets/img/Types/${types[0]}.png'),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    // types[1] != null
-                    //     ? Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //         child:
-                    //             Image.asset('assets/img/Types/${types[1]}.png'),
-                    //       )
-                    //     : Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //       )
+                    types.length > 1
+                        ? Container(
+                            width: 50,
+                            height: 50,
+                            child:
+                                Image.asset('assets/img/Types/${types[1]}.png'),
+                          )
+                        : Container()
                   ],
                 )
               ],
